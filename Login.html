@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ff99e6, #cce0ff);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container {
+      background: #ffcccc;
+      padding: 40px 30px;
+      border-radius: 16px;
+      max-width: 360px;
+      margin: auto;
+      margin-top: 60px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      color: #4d0026;
+      margin-bottom: 24px;
+      font-size: 26px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #660066;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+    }
+    button {
+      background: linear-gradient(to right, #ff66a3, #4d94ff);
+      border: none;
+      padding: 12px;
+      width: 100%;
+      color: #330014;
+      font-weight: bold;
+      font-size: 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .link {
+      margin-top: 18px;
+    }
+    .link a {
+      color: #ec407a;
+      text-decoration: none;
+    }
+    .nav-footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 20px;
+    }
+    .nav-footer button {
+      background: linear-gradient(to right, #ff80b3, #80b3ff);
+      border: none;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #1a001a;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .nav-footer button:hover {
+      background: #ec407a;
+    }
+    footer {
+      text-align: center;
+      padding: 14px;
+      font-size: 13px;
+      color: #1a000a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form action="login.php" method="post">
+      
+<input type="text" name="username" placeholder="Username" required />
+<input type="password" name="password" placeholder="Password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    <div class="link">
+      <p>Belum punya akun? <a href="register.html">Klik di sini</a></p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button onclick="window.location.href='beranda.html'">🐾 Kembali ke Beranda</button>
+  </div>
+  <footer>
+    © 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan
+  </footer>
+</body>
+</html>

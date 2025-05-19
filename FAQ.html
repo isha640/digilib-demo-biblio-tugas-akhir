@@ -1,0 +1,314 @@
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — Bibliona</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #6c5ce7;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
+      background: #ffffffcc;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+	
+	.search-box {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 0.6rem;
+      border: 2px solid #6c5ce7;
+      border-radius: 8px;
+    }
+	
+	.search-box button {
+      background: #6c5ce7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+    }
+	
+    details {
+      background: #f1f2f6;
+      border: 2px solid #a29bfe;
+      border-radius: 10px;
+      margin: 1rem 0;
+      padding: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    summary {
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #2d3436;
+    }
+
+    details[open] {
+      background-color: #dfe6e9;
+    }
+	
+	.tts-controls {
+      margin-top: 0.5rem;
+    }
+
+    .tts-controls button, select {
+      margin-right: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .speak-btn {
+      background: #6c5ce7;
+      color: white;
+    }
+
+    .stop-btn {
+      background: #ff7675;
+      color: white;
+    }
+
+	@keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .maskot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+	
+   .btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-container button {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+	
+	footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>FAQ — Bibliona</h1>
+
+  <div class="faq-container">
+  
+  <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Cari pertanyaan..." oninput="searchFAQ()" />
+      <button onclick="startVoiceSearch()">🎤</button>
+  </div>
+  <div class="search-box">
+      <label for="voiceSelect">Pilih suara:</label>
+      <select id="voiceSelect"></select>
+  </div>
+
+    <div id="faqList">
+      <details>
+        <summary>Apa itu Bibliona?</summary>
+        <p id="answer1">Bibliona adalah perpustakaan digital bertema fantasi dan sains yang menyajikan pengalaman membaca yang interaktif, penuh warna, dan bisa disesuaikan dengan preferensi pengguna.</p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer1')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>
+
+      <details>
+        <summary>Fitur apa saja yang tersedia di Bibliona?</summary>
+        <p id="answer2">Bibliona menyediakan berbagai fitur seperti pencarian koleksi (OPAC), peminjaman buku digital, audio book, pengaturan tema tampilan, dan interaksi dengan karakter animatif.</p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer2')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>
+
+      <details>
+        <summary>Bagaimana cara mengganti tema tampilan?</summary>
+        <p id="answer3">Di bagian pojok kanan atas halaman utama, klik ikon tema. Kamu bisa memilih berbagai tema seperti Fairytale, Sains, Astronomi, atau default. Tampilan akan berubah secara instan.</p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer3')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>
+
+	  <details>
+        <summary>Apakah saya bisa meminjam buku seperti perpustakaan biasa?</summary>
+        <p id="answer4">Ya! Kamu bisa meminjam buku digital dengan membuat akun dan memilih buku yang tersedia. Sistem akan menyimpan riwayat peminjamanmu dan mengatur waktu pengembalian otomatis.</p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer4')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>
+   
+	  <details>
+        <summary>Bagaiman cara menggunakan OPAC?</summary>
+        <p id="answer5">Caranya gampang! Kamu hanya perlu mencari koleksi yang diinginkan di kolom search bar, bisa cari dengan judul, nama pengarang, tema, dan lain-lain.</p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer5')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>
+
+	  <details>
+        <summary>Apakah tersedia audiobook?</summary>
+        <p id="answer6">Ya, sebagian besar koleksi Bibliona dilengkapi dengan versi audiobook. Kamu bisa langsung mendengarkan melalui pemutar yang tersedia di halaman buku.</p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer6')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>	  
+	  
+      <details>
+        <summary>Apakah saya harus mendaftar untuk menggunakan Bibliona?</summary>
+        <p id="answer7">Tidak wajib, tapi dengan mendaftar kamu bisa menikmati fitur penuh seperti peminjaman, daftar favorit, personalisasi tema, dan riwayat aktivitas.</p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer7')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>
+	  
+      <details>
+        <summary>Siapa yang mengembangkan Bibliona?</summary>
+        <p id="answer8">      <p>Bibliona dikembangkan oleh tim kreatif yang peduli akan literasi digital, menggabungkan teknologi informasi dengan estetika dunia fantasi dan ilmu pengetahuan.</p></p>
+        <div class="tts-controls">
+          <button class="speak-btn" onclick="speakText('answer8')">🔊 Dengarkan</button>
+          <button class="stop-btn" onclick="stopSpeaking()">⏹ Stop</button>
+        </div>
+      </details>
+	</div>
+	
+  <div style="text-align:center; margin-top: 30px;">
+  <button onclick="window.location.href='beranda.html'" style="
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  ">
+    🐾 Kembali ke Beranda
+  </button>
+ </div>
+ <img src="Ikon.PNG" alt="Maskot Lucu" class="maskot">
+  <footer>
+    <p>© 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan</p>
+  </footer>
+  
+  <script>
+    // TTS Setup
+    let voices = [];
+    const voiceSelect = document.getElementById("voiceSelect");
+
+    function populateVoices() {
+      voices = speechSynthesis.getVoices().filter(voice => voice.lang.startsWith("id") || voice.lang.startsWith("en"));
+      voiceSelect.innerHTML = "";
+      voices.forEach((voice, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        voiceSelect.appendChild(option);
+      });
+    }
+
+    populateVoices();
+    speechSynthesis.onvoiceschanged = populateVoices;
+
+    function speakText(id) {
+      const text = document.getElementById(id).textContent;
+      stopSpeaking();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const selectedVoice = voices[voiceSelect.value];
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      utterance.lang = 'id-ID';
+      speechSynthesis.speak(utterance);
+    }
+
+    function stopSpeaking() {
+      speechSynthesis.cancel();
+    }
+
+    // Search FAQ
+    function searchFAQ() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const items = document.querySelectorAll("#faqList details");
+      items.forEach(item => {
+        const summary = item.querySelector("summary").textContent.toLowerCase();
+        item.style.display = summary.includes(input) ? "block" : "none";
+      });
+    }
+
+    // Voice Search (Speech Recognition)
+    function startVoiceSearch() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Browser kamu tidak mendukung pencarian suara.");
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "id-ID";
+      recognition.start();
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById("searchInput").value = transcript;
+        searchFAQ();
+      };
+    }
+  </script>
+</body>
+</html>

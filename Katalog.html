@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>📚 Bibliona OPAC 📖</title>
+  <style>
+    /* Custom palette with #e7c0bc #370808 #8b3c46 #d97e8a #ec9fab */
+    :root {
+      --color-light-pink: #e7c0bc;
+      --color-dark-maroon: #370808;
+      --color-deep-rose: #8b3c46;
+      --color-soft-rose: #d97e8a;
+      --color-pastel-pink: #ec9fab;
+      --color-background: #fff7f6;
+      --color-text-primary: var(--color-dark-maroon);
+      --color-text-secondary: #5a1a1a;
+      --color-border: var(--color-soft-rose);
+      --color-button-bg: var(--color-deep-rose);
+      --color-button-bg-hover: var(--color-dark-maroon);
+      --color-input-bg: #fff1f0; /* lighter for better placeholder contrast */
+      --color-input-border: var(--color-pastel-pink);
+      --color-input-border-focus: var(--color-deep-rose);
+      --color-shadow: rgba(139, 60, 70, 0.4);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--color-background);
+      color: var(--color-text-primary);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    header {
+      background-color: var(--color-soft-rose);
+      color: var(--color-dark-maroon);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 10px var(--color-shadow);
+      user-select: none;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+    main {
+      max-width: 600px;
+      width: 100%;
+      background: var(--color-light-pink);
+      padding: 2rem 2rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px var(--color-shadow);
+      color: var(--color-text-primary);
+      box-sizing: border-box;
+    }
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    input[type="text"], select {
+      flex-grow: 1;
+      min-width: 150px;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border: 2px solid var(--color-input-border);
+      border-radius: 30px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      background: var(--color-input-bg);
+      color: var(--color-dark-maroon);
+      box-shadow: inset 0 1px 3px #f4d7d4;
+    }
+    input[type="text"]::placeholder {
+      color: var(--color-deep-rose);
+      font-style: italic;
+      font-weight: 600;
+    }
+    input[type="text"]:focus, select:focus {
+      outline: none;
+      border-color: var(--color-input-border-focus);
+      box-shadow: 0 0 8px var(--color-deep-rose);
+      background: var(--color-background);
+      color: var(--color-dark-maroon);
+    }
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--color-deep-rose) 50%),
+        linear-gradient(135deg, var(--color-deep-rose) 50%, transparent 50%);
+      background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+      background-size: 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 2.5rem;
+    }
+    button {
+      background-color: var(--color-button-bg);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px var(--color-shadow);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    button:hover, button:focus {
+      background-color: var(--color-button-bg-hover);
+      box-shadow: 0 6px 14px var(--color-shadow);
+    }
+    .search-history {
+      background-color: var(--color-pastel-pink);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px var(--color-shadow);
+      margin-top: 1.5rem;
+      color: var(--color-dark-maroon);
+      user-select: none;
+    }
+    .search-history h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .search-history ul {
+      list-style: none;
+      padding-left: 1.2rem;
+      margin: 0.5rem 0 0 0;
+    }
+    .search-history li {
+      padding: 0.3rem 0;
+      cursor: pointer;
+      transition: color 0.3s;
+      font-size: 1rem;
+    }
+    .search-history li:hover, .search-history li:focus {
+      color: var(--color-deep-rose);
+      text-decoration: underline;
+      outline: none;
+    }
+    .home-button-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .home-button {
+      background-color: var(--color-button-bg);
+      color: white;
+      border: none;
+      padding: 0.8rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px var(--color-shadow);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+    .home-button:hover, .home-button:focus {
+      background-color: var(--color-button-bg-hover);
+      box-shadow: 0 7px 19px var(--color-shadow);
+    }
+    .example-searches {
+      margin-top: 1rem;
+      font-style: italic;
+      color: var(--color-deep-rose);
+      user-select: none;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+	@keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .maskot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+	footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>📚 Bibliona OPAC 📖</header>
+  <main>
+    <form id="searchForm" aria-label="Search the library catalog">
+      <input type="text" id="searchInput" placeholder="🔍 Enter search terms..." aria-label="Search terms" autocomplete="off" />
+      <select id="searchField" aria-label="Select search field">
+        <option value="all">All fields</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="subject">Subject</option>
+        <option value="format">Format</option>
+      </select>
+      <button type="submit" aria-label="Search">Search 🔎</button>
+    </form>
+    <div class="example-searches">Example searches: <strong>Fairy Tales, Art Biography, Pop Art</strong></div>
+
+    <section class="search-history" aria-label="Search history">
+      <h2>🕘 Search History for "Books about Fairy Tales"</h2>
+      <ul id="historyList" tabindex="0"></ul>
+    </section>
+
+    <div class="home-button-container">
+      <a href="beranda.html" class="home-button" aria-label="Back to homepage">🏠 Back to Homepage</a>
+    </div>
+  </main>
+  <img src="Ikon.PNG" alt="Maskot Lucu" class="maskot">
+  <footer>
+    <p>© 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan</p>
+  </footer>
+  <script>
+    const fairyTaleSearches = [
+      'Fairy Tales',
+      'Grimm\'s Fairy Tales',
+      'Hans Christian Andersen',
+      'Children Stories',
+      'Folklore',
+      'Mythical Stories',
+      'Legendary Tales'
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const searchField = document.getElementById('searchField');
+    const historyList = document.getElementById('historyList');
+    const homeButton = document.querySelector('.home-button');
+
+    function renderHistory() {
+      historyList.innerHTML = fairyTaleSearches.map(term => <li tabindex="0">${term}</li>).join('');
+    }
+
+    function handleHistoryClick(event) {
+      if(event.target.tagName.toLowerCase() === 'li') {
+        searchInput.value = event.target.textContent;
+        searchField.value = 'all';
+        searchInput.focus();
+      }
+    }
+
+    historyList.addEventListener('click', handleHistoryClick);
+    historyList.addEventListener('keypress', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        handleHistoryClick(e);
+      }
+    });
+
+    homeButton.addEventListener('click', e => {
+      e.preventDefault();
+      searchInput.value = '';
+      searchField.value = 'all';
+      searchInput.focus();
+    });
+
+    renderHistory();
+  </script>
+</body>
+</html>

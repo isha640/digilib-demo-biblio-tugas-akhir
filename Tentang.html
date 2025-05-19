@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tentang Kami - Bibliona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fef6ff;
+      color: #2d0066;
+    }
+    header {
+      background: linear-gradient(to right, #660066, #e600e6);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: .15em solid white;
+      font-size: 2em;
+      animation: typing 4s steps(30, end), blink-caret .75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: white; }
+    }
+    header::after {
+      content: "📚✨";
+      font-size: 32px;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+    }
+    section {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #9933ff;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    h2:hover {
+      transform: translateX(8px);
+    }
+    h2::after {
+      content: "➕";
+      position: absolute;
+      right: 0;
+    }
+	 @keyframes swing {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+    }
+	h2 {
+	  color: #9933ff;
+	  cursor: pointer;
+	  position: relative;
+	  transition: transform 0.3s ease;
+	  animation: swing 4s infinite ease-in-out;
+	}
+	h2:hover {
+	  animation: swing 1s infinite ease-in-out;
+	}
+    .section-content {
+      display: none;
+      margin-top: 15px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .active .section-content {
+      display: block;
+    }
+    .struktur ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    .struktur li {
+      margin: 5px 0;
+    }
+    .struktur img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border: 2px dashed #cc99ff;
+      border-radius: 12px;
+    }
+    .kontak iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      margin-top: 10px;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: 'Fredoka', sans-serif;
+    }
+    button {
+      background-color: #a471ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #cba6ff;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .maskot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+	
+	.btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-container button {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+	footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Tentang Kami</h1>
+  <p>Perpustakaan Digital Ajaib — Bibliona</p>
+</header>
+
+<section class="toggle-section">
+  <h2 onclick="toggleSection(this)">Sejarah</h2>
+  <div class="section-content">
+    <p class="typewriter" data-text="Bibliona dikembangkan dengan menghadirkan koleksi digital dan ruang baca virtual untuk memastikan akses terhadap ilmu pengetahuan tetap terbuka bagi semua kalangan.
+	Inovasi ini dilakukan tanpa menghilangkan ciri khas perpustakaan sebagai ruang yang tenang dan nyaman. Bibliona berasal dari gabungan kata biblio (buku) dan ona (zona), yang bermakna sebagai zona buku.
+	Pada tanggal 04 April 2024 Perpustakaan Bibliona didirikan sebagai respons terhadap perkembangan zaman dan kemajuan teknologi yang mengubah cara masyarakat mengakses informasi.
+	Di tengah pergeseran dari media cetak ke digital, Bibliona hadir untuk menjembatani kebutuhan akan literasi modern dengan tetap mempertahankan fungsi perpustakaan sebagai ruang belajar yang tenang dan inspiratif."></p>
+  </div>
+</section>
+
+<section class="toggle-section">
+  <h2 onclick="toggleSection(this)">Logo</h2>
+  <div class="section-content">
+     <p><strong>Warna:</strong></p>
+    <ul>
+      <li><strong>Ungu tua (background):</strong> Warna utama logo yang memberikan kesan elegan, modern, dan mencerminkan intelektualitas serta teknologi—selaras dengan konsep perpustakaan digital.</li>
+      <li><strong>Kuning emas (ikon dan aksen):</strong> Melambangkan pencerahan, ilmu pengetahuan, dan energi positif dalam proses belajar.</li>
+      <li><strong>Putih (teks):</strong> Memberi kesan bersih, profesional, dan memudahkan keterbacaan.</li>
+    </ul>
+    <p><strong>Bentuk & Komponen:</strong></p>
+    <ul>
+      <li><strong>Lingkaran Ganda:</strong> Menandakan kesatuan, kesinambungan, dan integritas. Memberi kesan struktur dan kestabilan.</li>
+      <li><strong>Teks “BIBLIONA LIBRARY”:</strong> Diletakkan melingkar di dalam lingkaran. Nama institusi yang ditulis dengan huruf kapital memberi kesan formal dan tegas.</li>
+      <li><strong>Ikon Buku Terbuka:</strong> Simbol utama dari perpustakaan, merepresentasikan sumber ilmu, literasi, dan akses informasi.</li>
+      <li><strong>Bola Lampu di Atas Buku:</strong> Melambangkan ide, wawasan, dan inspirasi yang muncul dari membaca atau belajar. Cahaya yang terpancar memperkuat makna “pencerahan melalui ilmu”.</li>
+      <li><strong>Garis & Simbol Dekoratif di Kanan-Kiri:</strong> Memberi keseimbangan visual serta menambah kesan modern dan berkelas.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="toggle-section">
+  <h2 onclick="toggleSection(this)">Visi & Misi</h2>
+  <div class="section-content">
+    <h3>Visi</h3>
+    <p class="typewriter" data-text="Menjadi ruang baca digital yang ramah pengguna, menarik, dan adaptif, untuk menumbuhkan kenyamanan dan kecintaan terhadap membaca di era digital."></p>
+    <h3>Misi</h3>
+    <ul>
+      <li class="typewriter" data-text="Menghadirkan koleksi digital yang lengkap, berkualitas, dan mudah diakses untuk mendukung kebutuhan informasi dan literasi semua kalangan."></li>
+      <li class="typewriter" data-text="Menyediakan antarmuka yang dapat disesuaikan (customizable theme) agar pengalaman membaca menjadi lebih personal dan menyenangkan."></li>
+      <li class="typewriter" data-text="Mengembangkan fitur-fitur interaktif yang mendorong kebiasaan membaca secara rutin dan menyenangkan."></li>
+	  <li class="typewriter" data-text="Menciptakan suasana digital yang nyaman dan menarik agar pengguna merasa betah dan terhubung dengan dunia literasi."></li>
+    </ul>
+  </div>
+</section>
+
+<section class="toggle-section struktur">
+  <h2 onclick="toggleSection(this)">Struktur Organisasi</h2>
+  <div class="section-content">
+    <ul>
+      <li class="typewriter" data-text="Kepala Perpustakaan: Athanasia Octaviani Puspita Dewi S.Kom.,M.Cs"></li>
+      <li class="typewriter" data-text="Koordinator LayananDigital: Nayla Tsabita Zahra (13040124140127)"></li>
+      <li class="typewriter" data-text="Pustakawan: Syenata Cintya Kendrata"></li>
+      <li class="typewriter" data-text="Staff Koleksi dan Metadata: Siti Nur Aisyah (13040124130091)"></li>
+      <li class="typewriter" data-text="Staff Layanan: Tiara Angelina Putri (13040124130090) "></li>
+	  <li class="typewriter" data-text="Staff Teknologi Informasi: Rangga Bratadikara Armada"></li>
+	  <li class="typewriter" data-text="Staff Promosi: Mayla Afriza Arsani (13040124130093)"></li>
+	  <li class="typewriter" data-text="Staff Literasi Digital: Leonidas Zeus Theseus"></li>
+    </ul>
+    <img src="gambar-struktur.JPG" alt="Struktur Organisasi">
+  </div>
+</section>
+
+<section class="kontak">
+  <h2>Kontak Kami</h2>
+  <p><strong>Alamat:</strong> Jl. Prof. Soedarto No.13, Tembalang, Kec. Tembalang, Kota Semarang, Jawa Tengah 50275</p>
+  <p><strong>Telepon:</strong> (021) 5791-2403</p>
+  <p><strong>Email:</strong> bibliona@library.id</p>
+
+  <h3>Lokasi Kami</h3>
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.6591670237435!2d110.43580647371294!3d-7.04927726907304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708c1b347941cf%3A0xc28c8c239e1b7efc!2sWidya%20Puraya%20UNDIP!5e0!3m2!1sid!2sid!4v1747409706379!5m2!1sid!2sid"
+   width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+ </iframe>
+
+  <h3>Formulir Kontak</h3>
+  <form action="#" method="post">
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" name="nama" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="pesan">Pesan:</label>
+    <textarea id="pesan" name="pesan" rows="5" required></textarea>
+
+    <button type="submit">Kirim Pesan</button>
+  </form>
+   <div style="text-align:center; margin-top: 30px;">
+  <button onclick="window.location.href='beranda.html'" style="
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  ">
+    🐾 Kembali ke Beranda
+  </button>
+ </div>
+</section>
+<img src="Ikon.PNG" alt="Maskot Lucu" class="maskot">
+  <footer>
+    <p>© 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan</p>
+  </footer>
+<script>
+  function toggleSection(header) {
+    const section = header.parentElement;
+    section.classList.toggle('active');
+
+    if (section.classList.contains('active')) {
+      const writers = section.querySelectorAll('.typewriter');
+      writers.forEach((el, index) => {
+        const text = el.getAttribute('data-text');
+        el.textContent = '';
+        let i = 0;
+        setTimeout(() => {
+          const interval = setInterval(() => {
+            el.textContent += text.charAt(i);
+            i++;
+            if (i === text.length) clearInterval(interval);
+          }, 25);
+        }, index * 250);
+      });
+    }
+  }
+</script>
+</body>
+</html>

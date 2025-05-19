@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda & Berita - Bibliona</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #a435d0, #de8bff);
+      padding: 40px;
+    }
+
+    header {
+      text-align: center;
+      background-color: #7f088a;
+      color: white;
+      padding: 25px 20px;
+      font-size: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      margin-bottom: 40px;
+    }
+
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 20px;
+      flex: 1 1 45%;
+      max-width: 600px;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #230b2c;
+      font-size: 1.5em;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .agenda-item, .berita-item {
+      margin: 15px 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.6);
+      border-left: 5px solid #571c6f;
+      border-radius: 12px;
+    }
+
+    .agenda-item p, .berita-item p {
+      margin: 5px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #733e88;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+	
+	@keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .maskot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+	
+	.btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-container button {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+	
+	footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>✎𓂃📋Agenda & Berita🗓️🗒</header>
+
+  <!-- Agenda Section -->
+  <div class="section">
+    <div class="card">
+      <h2>Agenda Akan Datang</h2>
+      <div class="agenda-item">
+        <p>📅 <strong>Tanggal:</strong> 25 Mei 2025</p>
+        <p>⏰ <strong>Waktu:</strong> 09.00 - 12.00 WIB</p>
+        <p>📍 <strong>Lokasi:</strong> Ruang Galaxy, Perpustakaan Bibliona</p>
+        <p>📘 Workshop “Coding untuk Anak”</p>
+      </div>
+      <div class="agenda-item">
+        <p>📅 <strong>Tanggal:</strong> 1 Juni 2025</p>
+		<p>⏰ <strong>Waktu:</strong> 10.00 - 13.00 WIB</p>
+        <p>📍 <strong>Lokasi:</strong> Ruang Aurora</p>
+        <p>📘 Workshop “Menjelajah Planet Lewat Buku & VR”</p>
+      </div>
+      <div class="agenda-item">
+        <p>📅 <strong>Tanggal:</strong> 8 Juni 2025</p>
+		<p>⏰ <strong>Waktu:</strong> 09.00 - 15.00 WIB</p>
+        <p>📍 <strong>Lokasi:</strong> Hall Seribu Bintang</p>
+        <p>🎨 Lomba Ilustrasi Tokoh Fantasi & Ilmuwan Hebat</p>
+      </div>
+      <div class="agenda-item">
+        <p>📅 <strong>Tanggal:</strong> 15 Juni 2025</p>
+		<p>⏰ <strong>Waktu:</strong> 14.00 - 16.00 WIB</p>
+        <p>📍 <strong>Lokasi:</strong> Ruang Quantum, Lantai 2</p>
+        <p>🤖 Seminar “AI & Masa Depan Buku”</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Agenda yang Sudah Dilakukan</h2>
+      <div class="agenda-item">
+        <p>📅 1 - 5 Mei 2025</p>
+        <p>📚 Pameran Buku & Ilustrasi Fantasi</p>
+        <p>🎉 Terima kasih atas partisipasi 200+ pengunjung!</p>
+      </div>
+      <div class="agenda-item">
+        <p>📅 10 – 12 Mei 2025</p>
+        <p>📖 Festival Buku Fantasi & Fiksi Ilmiah</p>
+        <p>🧚 Ada cosplay dan koleksi fairy tale, sci-fi, & novel interaktif!</p>
+      </div>
+      <div class="agenda-item">
+        <p>📅 20 April 2025</p>
+        <p>✍️ Kelas Kreatif: Menulis Cerita Pendek Ilmiah</p>
+      </div>
+      <div class="agenda-item">
+        <p>📅 5 Mei 2025</p>
+        <p>🎬 Nonton Bareng “Interstellar + Diskusi Ilmiah”</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Berita Section -->
+  <div class="section">
+    <div class="card">
+      <h2>Berita Terkait</h2>
+      <div class="berita-item">
+        🌟 Mendukung Anak Muda Memasuki Ruang Digital yang Aman.  
+        <br><a href="https://www.kompas.com" target="_blank">Baca di Kompas</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Berita Perkembangan Teknologi</h2>
+      <div class="berita-item">
+        🧑‍💻 Kilas Balik Peresmian Perpustakaan Digital Dunia.  
+        <br><a href="https://www.tempo.co" target="_blank">Baca di Tempo</a>
+      </div>
+    </div>
+  </div>
+<div style="text-align:center; margin-top: 30px;">
+  <button onclick="window.location.href='beranda.html'" style="
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  ">
+    🐾 Kembali ke Beranda
+  </button>
+ </div>
+ <img src="Ikon.PNG" alt="Maskot Lucu" class="maskot">
+  <footer>
+    <p>© 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan</p>
+  </footer>
+</body>
+</html>

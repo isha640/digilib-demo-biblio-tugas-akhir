@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Sirkulasi Perpustakaan Digital</title>
+  <style>
+   .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+      flex-wrap: wrap;
+    }
+
+    .search-container input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      font-size: 16px;
+    }
+
+    .search-container button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #4b0082;
+      color: white;
+      font-size: 16px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+	
+    body { font-family: 'Segoe UI', sans-serif; background: #cda4ed; margin: 0; padding: 20px; }
+    h1, h2 { color: #37174f; }
+    .container { max-width: 900px; margin: auto; background: #f3e6fc; padding: 25px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+    .buku, .pustaka-item { padding: 10px; border-bottom: 1px solid #491273; }
+    .btn { padding: 6px 12px; margin-top: 5px; border: none; border-radius: 4px; cursor: pointer; }
+    .btn-pinjam { background: #491273; color: white; }
+    .btn-kembali { background: #c0392b; color: white; }
+    .input-user { margin-bottom: 10px; padding: 8px; width: 100%; box-sizing: border-box; }
+    .info { font-size: 14px; color: gray; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { padding: 12px; border-bottom: 1px solid #ccc; text-align: left; }
+    th { background-color: #e9d4f5; color: #4a0072; }
+    tr:hover { background-color: #f3eafc; }
+    .ulasan { background-color: #f1e6fc; padding: 10px; margin-top: 10px; border-left: 4px solid #6a0dad; border-radius: 8px; }
+    .ulasan textarea, .ulasan select { width: 100%; margin-top: 8px; margin-bottom: 10px; padding: 8px; }
+    .success { color: green; font-weight: bold; margin-top: 10px; }
+    .aksi button { background-color: #8e44ad; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; margin-bottom: 5px; }
+    .aksi button:hover { background-color: #732d91; }
+	
+	.btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+	
+	@keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .maskot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+	
+    .btn-container button {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+	footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>📚 Sirkulasi Perpustakaan Digital</h1>
+
+  <input id="username" class="input-user" type="text" placeholder="Masukkan nama pengguna">
+ <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari buku berdasarkan judul, penulis, atau kategori..." />
+    <button onclick="startVoiceSearch()">🎤</button>
+    <button onclick="searchBooks()">Cari</button>
+  </div>
+   <div style="text-align: center; margin-top: 10px;">
+    <label for="filter">Filter: </label>
+  <select id="filter">
+    <option value="">Semua</option>
+    <option value="judul">Judul</option>
+    <option value="penulis">Penulis</option>
+    <option value="subjek">Subjek</option>
+    <option value="penerbit">Penerbit</option>
+    <option value="tahun">Tahun Terbit</option>
+    <option value="anak">Anak</option>
+    <option value="remaja">Remaja</option>
+    <option value="teenfiction">Teenfiction</option>
+    <option value="fiction">Fiction</option>
+    <option value="agama">Agama</option>
+    <option value="literatur">Literatur</option>
+    <option value="referensi">Referensi</option>
+    <option value="fanfiction">Fanfiction</option>
+    <option value="novel">Novel</option>
+    <option value="kamus">Kamus</option>
+    <option value="bahasa">Bahasa</option>
+    <option value="sains">Sains</option>
+    <option value="psikologi">Psikologi</option>
+    <option value="matematika">Matematika</option>
+    <option value="teknologi">Teknologi</option>
+  </select>
+</div>
+  <h2>Koleksi Buku</h2>
+  <div id="daftarBuku"></div>
+
+  <h2>Daftar Pustaka Kamu</h2>
+  <div id="daftarPustaka"></div>
+
+  <h2>📖 Riwayat Bacaan</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Judul Buku</th>
+        <th>Tanggal Pinjam</th>
+        <th>Tanggal Kembali</th>
+        <th>Status</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <p class="info">*Data ini disimpan di browser Anda dan akan bertahan selama tidak dihapus.</p>
+</div>
+
+<div style="text-align:center; margin-top: 30px;">
+  <label for="bahasaTTS"><strong>Pilih Bahasa Pembacaan:</strong></label><br>
+  <select id="bahasaTTS" style="margin: 10px; padding: 8px; font-size: 16px;">
+    <option value="id-ID">🇮🇩 Bahasa Indonesia</option>
+    <option value="en-US">🇺🇸 English</option>
+  </select><br>
+
+  <button onclick="bacaUlasan()" style="
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  ">
+    🔊 Baca Semua Ulasan
+  </button>
+</div>
+
+<div style="text-align:center; margin-top: 30px;">
+  <button onclick="window.location.href='beranda.html'" style="
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  ">
+    🐾 Kembali ke Beranda
+  </button>
+ </div>
+  <img src="Ikon.PNG" alt="Maskot Lucu" class="maskot">
+  <footer>
+    <p>© 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan</p>
+  </footer>
+</body>
+<script>
+  const koleksi = [
+    { id: "B001", judul: "Kamus 5 Bahasa" },
+    { id: "B002", judul: "Dongeng Timun Mas" },
+    { id: "B003", judul: "Sejarah yang Disembunyikan" },
+    { id: "B004", judul: "Matematika Dasar" },
+    { id: "B005", judul: "Mariposa" }
+  ];
+
+  const DURASI_PINJAM = 7; // hari
+  const daftarBukuDiv = document.getElementById("daftarBuku");
+  const daftarPustakaDiv = document.getElementById("daftarPustaka");
+  const inputUser = document.getElementById("username");
+
+  function tampilkanKoleksi() {
+    daftarBukuDiv.innerHTML = "";
+    koleksi.forEach(buku => {
+      const div = document.createElement("div");
+      div.className = "buku";
+      div.innerHTML = `
+        <strong>${buku.judul}</strong> (ID: ${buku.id})<br>
+        <button class="btn btn-pinjam" onclick="pinjamBuku('${buku.id}', '${buku.judul}')">Pinjam Buku</button>
+      `;
+      daftarBukuDiv.appendChild(div);
+    });
+  }
+
+  function pinjamBuku(id, judul) {
+    const user = inputUser.value.trim();
+    if (!user) return alert("Masukkan nama pengguna terlebih dahulu!");
+    let pustaka = ambilPustaka(user);
+    if (pustaka[id]) {
+      alert("Buku ini sudah kamu pinjam.");
+      return;
+    }
+    const batas = new Date();
+    batas.setDate(batas.getDate() + DURASI_PINJAM);
+    pustaka[id] = { judul: judul, batas: batas.toISOString() };
+    simpanPustaka(user, pustaka);
+    tampilkanPustaka();
+  }
+
+  function kembalikanBuku(id) {
+    const user = inputUser.value.trim();
+    let pustaka = ambilPustaka(user);
+    const buku = pustaka[id];
+    if (!buku) return;
+    const tanggalPinjam = new Date(new Date(buku.batas).getTime() - DURASI_PINJAM * 24 * 60 * 60 * 1000);
+    const tanggalKembali = new Date();
+    let riwayat = JSON.parse(localStorage.getItem("riwayat_" + user)) || [];
+    riwayat.push({
+      id: id,
+      judul: buku.judul,
+      tanggalPinjam: tanggalPinjam.toLocaleDateString(),
+      tanggalKembali: tanggalKembali.toLocaleDateString(),
+      ulasan: "",
+      rating: ""
+    });
+    localStorage.setItem("riwayat_" + user, JSON.stringify(riwayat));
+    delete pustaka[id];
+    simpanPustaka(user, pustaka);
+    tampilkanPustaka();
+    tampilkanRiwayat();
+  }
+
+  function ambilPustaka(user) {
+    return JSON.parse(localStorage.getItem("sirkulasi_" + user)) || {};
+  }
+
+  function simpanPustaka(user, data) {
+    localStorage.setItem("sirkulasi_" + user, JSON.stringify(data));
+  }
+
+  function tampilkanPustaka() {
+    const user = inputUser.value.trim();
+    daftarPustakaDiv.innerHTML = "";
+    if (!user) {
+      daftarPustakaDiv.innerHTML = `<div class="info">Masukkan nama pengguna untuk melihat pustaka.</div>`;
+      return;
+    }
+    let pustaka = ambilPustaka(user);
+    const sekarang = new Date();
+    let adaBuku = false;
+    for (let id in pustaka) {
+      const data = pustaka[id];
+      const batas = new Date(data.batas);
+      if (batas < sekarang) {
+        delete pustaka[id];
+        simpanPustaka(user, pustaka);
+        continue;
+      }
+      adaBuku = true;
+      const div = document.createElement("div");
+      div.className = "pustaka-item";
+      div.innerHTML = `
+        <strong>${data.judul}</strong><br>
+        Batas waktu: ${batas.toLocaleDateString()}<br>
+        <button class="btn btn-kembali" onclick="kembalikanBuku('${id}')">Kembalikan & Ulas</button>
+      `;
+      daftarPustakaDiv.appendChild(div);
+    }
+    if (!adaBuku) {
+      daftarPustakaDiv.innerHTML = `<div class="info">Tidak ada buku yang sedang dipinjam.</div>`;
+    }
+  }
+
+  function tampilkanRiwayat() {
+    const user = inputUser.value.trim();
+    const tbody = document.querySelector("tbody");
+    tbody.innerHTML = "";
+    let riwayat = JSON.parse(localStorage.getItem("riwayat_" + user)) || [];
+    riwayat.forEach(item => {
+      const tr = document.createElement("tr");
+      const ulasanId = "ulasan-" + item.id;
+      const pesanId = "pesan-" + item.id;
+      tr.innerHTML = `
+        <td>${item.judul}</td>
+        <td>${item.tanggalPinjam}</td>
+        <td>${item.tanggalKembali}</td>
+        <td>${item.ulasan && item.rating ? "Selesai" : "Menunggu Ulasan"}</td>
+        <td class="aksi">
+          ${item.ulasan && item.rating ? `
+            <div class="ulasan">
+              <p><strong>Ulasan:</strong> ${item.ulasan}</p>
+              <p><strong>Rating:</strong> ${"⭐".repeat(item.rating)}</p>
+            </div>` : `
+            <button onclick="tampilkanUlasan('${item.id}')">Ulas</button>
+            <div class="ulasan" id="${ulasanId}" style="display: none;">
+              <textarea rows="3" placeholder="Tulis ulasan untuk '${item.judul}'..."></textarea>
+              <select>
+                <option value="">-- Pilih Rating --</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+              </select>
+              <button onclick="kirimUlasan('${item.id}')">Kirim Ulasan</button>
+              <div class="success" id="${pesanId}"></div>
+            </div>`}
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function tampilkanUlasan(id) {
+    const form = document.getElementById("ulasan-" + id);
+    form.style.display = form.style.display === "none" ? "block" : "none";
+  }
+
+  function kirimUlasan(id) {
+    const user = inputUser.value.trim();
+    let riwayat = JSON.parse(localStorage.getItem("riwayat_" + user)) || [];
+    const form = document.getElementById("ulasan-" + id);
+    const textarea = form.querySelector("textarea");
+    const select = form.querySelector("select");
+    const pesan = document.getElementById("pesan-" + id);
+    if (textarea.value === '' || select.value === '') {
+      alert("Silakan isi ulasan dan rating terlebih dahulu.");
+      return;
+    }
+    const index = riwayat.findIndex(item => item.id === id);
+    if (index !== -1) {
+      riwayat[index].ulasan = textarea.value;
+      riwayat[index].rating = select.value;
+      localStorage.setItem("riwayat_" + user, JSON.stringify(riwayat));
+      pesan.innerText = "✅ Terima kasih atas ulasan Anda!";
+      tampilkanRiwayat();
+    }
+  }
+
+  inputUser.addEventListener("input", () => {
+    tampilkanPustaka();
+    tampilkanRiwayat();
+  });
+
+  window.onload = () => {
+    tampilkanKoleksi();
+    tampilkanPustaka();
+    tampilkanRiwayat();
+  };
+ function searchBooks() {
+    const input = document.getElementById("searchInput").value.trim();
+    if (input === "") {
+      alert("Silakan masukkan kata kunci untuk mencari koleksi.");
+    } else {
+      // Kamu bisa ganti ini jadi pencarian nyata nanti
+      alert("Mencari: " + input);
+
+      // Contoh: redirect ke hasil pencarian (opsional)
+      // window.location.href = "hasil-pencarian.html?query=" + encodeURIComponent(input);
+    }
+  }
+
+   function startVoiceSearch() {
+    if (!('webkitSpeechRecognition' in window)) {
+      alert("Browser kamu belum mendukung voice recognition 😢\nCoba pakai Google Chrome ya!");
+      return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'id-ID'; // Bahasa Indonesia
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.start();
+
+    recognition.onstart = () => {
+      alert("🎙️ Silakan bicara sekarang...");
+    };
+
+    recognition.onerror = (event) => {
+      alert("Terjadi kesalahan saat mendeteksi suara: " + event.error);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      document.getElementById("searchInput").value = transcript;
+      searchBooks(); // langsung lakukan pencarian
+    };
+  }
+  function bacaUlasan() {
+  const user = inputUser.value.trim();
+  if (!user) {
+    alert("Masukkan nama pengguna terlebih dahulu.");
+    return;
+  }
+
+  let riwayat = JSON.parse(localStorage.getItem("riwayat_" + user)) || [];
+  let teks = "";
+
+  riwayat.forEach(item => {
+    if (item.ulasan && item.rating) {
+      teks += `Buku ${item.judul}. Ulasan: ${item.ulasan}. Rating: ${item.rating} bintang. `;
+    }
+  });
+
+  if (teks === "") {
+    alert("Belum ada ulasan untuk dibacakan.");
+    return;
+  }
+
+  const suara = new SpeechSynthesisUtterance(teks);
+  suara.lang = "id-ID";
+  speechSynthesis.speak(suara);
+}
+function bacaUlasan() {
+  const user = inputUser.value.trim();
+  if (!user) {
+    alert("Masukkan nama pengguna terlebih dahulu.");
+    return;
+  }
+
+  const bahasa = document.getElementById("bahasaTTS").value;
+
+  let riwayat = JSON.parse(localStorage.getItem("riwayat_" + user)) || [];
+  let teks = "";
+
+  riwayat.forEach(item => {
+    if (item.ulasan && item.rating) {
+      teks += `Buku ${item.judul}. Ulasan: ${item.ulasan}. Rating: ${item.rating} bintang. `;
+    }
+  });
+
+  if (teks === "") {
+    alert("Belum ada ulasan untuk dibacakan.");
+    return;
+  }
+
+  const suara = new SpeechSynthesisUtterance(teks);
+  suara.lang = bahasa;
+  speechSynthesis.speak(suara);
+}
+</script>
+</body>
+</html>

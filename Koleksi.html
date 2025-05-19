@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koleksi</title>
+  <style>
+	body {
+	   font-family: 'Segoe UI', sans-serif;
+      background: #fef6ff;
+      margin: 0;
+      padding: 20px;
+    }
+	
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+      flex-wrap: wrap;
+    }
+
+    .search-container input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      font-size: 16px;
+    }
+
+    .search-container button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #4b0082;
+      color: white;
+      font-size: 16px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+	
+	.koleksi-section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px;
+      background: #fff0f5;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .koleksi-section h1 {
+      text-align: center;
+      color: #6a0dad;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: linear-gradient(to top right, #ffd6ff, #e7c6ff);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      margin-bottom: 30px;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card h2 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #4b0082;
+    }
+
+    .kategori-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .kategori-link {
+      text-decoration: none;
+      background-color: #f0f0ff;
+      border: 2px solid #d2d2ff;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: bold;
+      color: #4b0082;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .kategori-link:hover {
+      background-color: #e0e0ff;
+      transform: translateY(-2px);
+    }
+	
+	@keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .maskot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+	
+    .btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-container button {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+	footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+<section class="koleksi-section" style="padding: 40px 20px; background: #fff0f5;">
+  <h2 style="text-align: center; color: #6a0dad; font-family: 'Comic Sans MS', cursive; font-size: 2.2em;">
+    ✨ Pilih Koleksi Favoritmu! ✨
+  </h2>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari buku berdasarkan judul, penulis, atau kategori..." />
+    <button onclick="startVoiceSearch()">🎤</button>
+    <button onclick="searchBooks()">Cari</button>
+  </div>
+   <div style="text-align: center; margin-top: 10px;">
+    <label for="filter">Filter: </label>
+  <select id="filter">
+    <option value="">Semua</option>
+    <option value="judul">Judul</option>
+    <option value="penulis">Penulis</option>
+    <option value="subjek">Subjek</option>
+    <option value="penerbit">Penerbit</option>
+    <option value="tahun">Tahun Terbit</option>
+    <option value="anak">Anak</option>
+    <option value="remaja">Remaja</option>
+    <option value="teenfiction">Teenfiction</option>
+    <option value="fiction">Fiction</option>
+    <option value="agama">Agama</option>
+    <option value="literatur">Literatur</option>
+    <option value="referensi">Referensi</option>
+    <option value="fanfiction">Fanfiction</option>
+    <option value="novel">Novel</option>
+    <option value="kamus">Kamus</option>
+    <option value="bahasa">Bahasa</option>
+    <option value="sains">Sains</option>
+    <option value="psikologi">Psikologi</option>
+    <option value="matematika">Matematika</option>
+    <option value="teknologi">Teknologi</option>
+  </select>
+</div>
+  
+  <div class="card">
+      <h2>Koleksi e-Book</h2>
+      <p>Temukan berbagai koleksi buku digital kami berdasarkan kategori berikut:</p>
+      <div class="kategori-list">
+        <a href="kategori/fiksi.html" class="kategori-link">Fiksi</a>
+        <a href="kategori/nonfiksi.html" class="kategori-link">Nonfiksi</a>
+        <a href="kategori/sains.html" class="kategori-link">Sains</a>
+        <a href="kategori/astronomi.html" class="kategori-link">Astronomi</a>
+        <a href="kategori/teknologi.html" class="kategori-link">Teknologi</a>
+        <a href="kategori/komputer.html" class="kategori-link">Ilmu Komputer</a>
+        <a href="kategori/dongeng.html" class="kategori-link">Dongeng</a>
+        <a href="kategori/sejarah.html" class="kategori-link">Sejarah</a>
+        <a href="kategori/geografi.html" class="kategori-link">Geografi</a>
+        <a href="kategori/matematika.html" class="kategori-link">Matematika</a>
+        <a href="kategori/agama.html" class="kategori-link">Agama</a>
+        <a href="kategori/psikologi.html" class="kategori-link">Psikologi</a>
+        <a href="kategori/seni.html" class="kategori-link">Seni</a>
+        <a href="kategori/olahraga.html" class="kategori-link">Olahraga</a>
+        <a href="kategori/biografi.html" class="kategori-link">Biografi</a>
+        <a href="kategori/ensiklopedia.html" class="kategori-link">Ensiklopedia</a>
+        <a href="kategori/kamus.html" class="kategori-link">Kamus</a>
+        <a href="kategori/hukum.html" class="kategori-link">Hukum</a>
+        <a href="kategori/ekonomi.html" class="kategori-link">Ekonomi</a>
+        <a href="kategori/politik.html" class="kategori-link">Politik</a>
+      </div>
+    </div>
+	<div class="card">
+      <h2>Koleksi Referensi</h2>
+      <p>Berikut adalah kategori koleksi referensi untuk menunjang pembelajaran dan penelitian:</p>
+      <div class="kategori-list">
+        <a href="kategori/kamus.html" class="kategori-link">Kamus</a>
+        <a href="kategori/ensiklopedia.html" class="kategori-link">Ensiklopedia</a>
+        <a href="kategori/jurnal.html" class="kategori-link">Jurnal Ilmiah</a>
+        <a href="kategori/publication.html" class="kategori-link">Publikasi</a>
+        <a href="kategori/literatur.html" class="kategori-link">Literatur</a>
+		<a href="kategori/referensi.html" class="kategori-link">Atlas</a>
+		<a href="kategori/referensi.html" class="kategori-link">Thesaurus</a>
+        <a href="kategori/referensi.html" class="kategori-link">Referensi Lain</a>
+      </div>
+    </div>
+	<div class="card">
+      <h2>Koleksi Audio Book</h2>
+      <p>Berikut adalah kategori koleksi audio untuk mendapatkan pengalaman lebih menyenangkan:</p>
+      <div class="kategori-list">
+        <a href="kategori/dongeng.html" class="kategori-link">Dongeng</a>
+        <a href="kategori/novel.html" class="kategori-link">Novel</a>
+        <a href="kategori/fabel.html" class="kategori-link">Fabel</a>
+        <a href="kategori/cerpen.html" class="kategori-link">Cerpen</a>
+        <a href="kategori/teenfiction.html" class="kategori-link">Teenfiction</a>
+		<a href="kategori/fanfiction.html" class="kategori-link">Fanfiction</a>
+		<a href="kategori/biografi.html" class="kategori-link">Biografi & Autobiografi</a>
+        <a href="kategori/motivasi.html" class="kategori-link">Motivasi dan Inspirasi</a>
+		<a href="kategori/pendidikan.html" class="kategori-link">Pendidikan dan Ilmu Pengetahuan</a>
+		<a href="kategori/agama.html" class="kategori-link">Agama</a>
+		<a href="kategori/bahasa.html" class="kategori-link">Bahasa</a>
+		<a href="kategori/lagu.html" class="kategori-link">Lagu Anak-anak</a>
+      </div>
+    </div>
+	<div class="card">
+      <h2>Koleksi Video</h2>
+      <p>Tonton berbagai video edukatif, cerita animasi, dan dokumenter menarik. Berikut adalah kategori koleksi video:</p>
+      <div class="kategori-list">
+	  <a href="kategori/edukasi.html" class="kategori-link">Edukasi</a>
+	  <a href="kategori/dokumenter.html" class="kategori-link">Dokumenter</a>
+	  <a href="kategori/animasi.html" class="kategori-link">Cerita Anak</a>
+	  <a href="kategori/literasi.html" class="kategori-link">Literasi dan Sastra</a>
+	  <a href="kategori/eksperimen.html" class="kategori-link">Lab Virtual</a>
+	  <a href="kategori/kegiatan.html" class="kategori-link">Dokumentasi Perpustakaan Digital</a>
+	   <a href="kategori/art.html" class="kategori-link">Seni</a>
+	  </div>
+    </div> 
+  <div style="text-align:center; margin-top: 30px;">
+  <button onclick="window.location.href='beranda.html'" style="
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  ">
+    🐾 Kembali ke Beranda
+  </button>
+ </div>
+</section>
+</body>
+</html>
+<img src="Ikon.PNG" alt="Maskot Lucu" class="maskot">
+  <footer>
+    <p>© 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan</p>
+  </footer>
+<script>
+  function searchBooks() {
+    const input = document.getElementById("searchInput").value.trim();
+    if (input === "") {
+      alert("Silakan masukkan kata kunci untuk mencari koleksi.");
+    } else {
+      // Kamu bisa ganti ini jadi pencarian nyata nanti
+      alert("Mencari: " + input);
+
+      // Contoh: redirect ke hasil pencarian (opsional)
+      // window.location.href = "hasil-pencarian.html?query=" + encodeURIComponent(input);
+    }
+  }
+
+   function startVoiceSearch() {
+    if (!('webkitSpeechRecognition' in window)) {
+      alert("Browser kamu belum mendukung voice recognition 😢\nCoba pakai Google Chrome ya!");
+      return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'id-ID'; // Bahasa Indonesia
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.start();
+
+    recognition.onstart = () => {
+      alert("🎙️ Silakan bicara sekarang...");
+    };
+
+    recognition.onerror = (event) => {
+      alert("Terjadi kesalahan saat mendeteksi suara: " + event.error);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      document.getElementById("searchInput").value = transcript;
+      searchBooks(); // langsung lakukan pencarian
+    };
+  }
+</script>
