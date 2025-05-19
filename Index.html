@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda Perpustakaan Digital</title>
+  <style>
+  
+    body {
+      margin: 0;
+	  font-family: 'Segoe UI', sans-serif;
+	  transition: background 0.5s ease, color 0.5s ease;
+	  font-size: 16px;
+	  background: #e0f7fa;
+    }
+
+   header {
+       background-image: url('header bg.jpg');
+	   background-size: cover;
+	   background-position: center;
+	   background-repeat: no-repeat;
+	   color: white;
+	   padding: 20px;
+	   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+    }
+
+    header img {
+      height: 180px;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header h1 span {
+      display: block;
+      font-size: 18px;
+      font-weight: normal;
+      color: #ffccff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #eee;
+      padding: 10px;
+      gap: 10px;
+    }
+
+    nav a, nav .lang-button {
+      background: linear-gradient(to right, #f8f9fa, #ffffff);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav a:hover, nav .lang-button:hover {
+      background-color: #f0f0f0;
+      transform: translateY(-2px);
+    }
+
+    .theme-switcher {
+      text-align: center;
+      padding: 10px;
+      background: #f2f2f2;
+      border-top: 1px solid #ccc;
+    }
+
+    .theme-switcher button {
+      margin: 4px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .theme-switcher button:hover {
+      transform: scale(1.05);
+    }
+
+    .content-wrapper {
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
+	  gap: 5px;
+	  padding: 20px;
+	}
+
+	.ranking,
+	.exclusive {
+	  flex: 3 2 300px;
+	  max-width: 500px;
+	}
+
+    .card {
+      border-radius: 16px;
+      padding: 16px;
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    body.theme-default {
+      background: linear-gradient(to right, #f3e5f5, #e6ccff);
+      color: #222;
+    }
+
+    body.theme-fairy {
+      background-image: url('Fairy.JPG');
+	  background-size: contain;
+	  background-position: center center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+
+    body.theme-astro {
+      background-image: url('Astronomy.JPG');
+	  background-size: contain;
+	  background-position: center center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+
+    body.theme-nature {
+      background-image: url('Alam.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+
+    body.theme-coquette {
+      background-image: url('Coquette.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #330014;
+    }
+
+    body.theme-aesthetic {
+      background-image: url('Esdedik.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+	
+	body.theme-cherry {
+      background-image: url('Cherry.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #ffcccc;
+    
+	}
+	
+    body.theme-dark {
+      background: linear-gradient(to right, #00001a, #000033);
+      color: #e6e6ff;
+    }
+	
+	body.theme-sapi {
+      background-image: url('Sapi.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+	
+	body.theme-bunga {
+     background-image: url('Kembang.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+	
+	body.theme-kartun {
+	  background-image: url('Kartun.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+	
+	body.theme-dinosaurus {
+      background-image: url('Dinosaurus.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+	
+	body.theme-fisika {
+     background-image: url('Fisika.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #6a0dad;
+    }
+	
+	body.theme-christmas {
+      background-image: url('Christmas.JPG');
+	  background-size: contain;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  color: #f0e6ff;
+    }
+	.info-corner {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 260px;
+      background: linear-gradient(to right, #6b5fb8, #bbb6d9);
+      color: #1d1d21;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .info-corner h3 {
+      margin-top: 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .info-corner p {
+      font-size: 14px;
+      margin: 8px 0;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .review-popup {
+      position: fixed;
+      bottom: 150px;
+      right: 20px;
+      width: 260px;
+      background: #bba5d1;
+      color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 16px;
+      z-index: 999;
+      font-size: 14px;
+      font-family: sans-serif;
+    }
+
+    .review-popup h3 {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .review-popup p {
+      font-size: 13px;
+      margin-bottom: 8px;
+      background: #937ea8;
+      padding: 8px;
+      border-radius: 8px;
+    }
+	
+    .ranking h2,
+    .exclusive h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 18px;
+      padding: 8px 12px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+      display: inline-block;
+      color: #4b0082;
+    }
+
+    .ranking .card {
+      background: linear-gradient(to right, #F9E5FF, #DBB6FF);
+      color: #222;
+      max-width: 240px;
+      border-radius: 16px;
+      padding: 14px;
+      margin: 4px 0;
+      font-family: 'Fredoka One', cursive;
+      font-size: 14px;
+    }
+
+    .exclusive .card {
+      background: linear-gradient(to left, #B49595, #E0B1DC);
+      color: #fff;
+      position: relative;
+      max-width: 240px;
+      border-radius: 16px;
+      padding: 14px;
+      margin: 4px 0;
+      font-family: 'Fredoka One', cursive;
+      font-size: 14px;
+    }
+
+    .exclusive .mini-button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      border: none;
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Segoe UI', sans-serif;
+    }
+	@keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .maskot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 22px;
+      }
+
+      .search-container input[type="text"] {
+        width: 100%;
+      }
+
+      .card {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body class="theme-default">
+  <header>
+     <img src="logo.png" alt="Logo Bibliona" style="height: 60px;" />
+  <div>
+    <h1 style="margin: 0;">Bibliona</h1>
+    <span style="color: #ffccff;">— Perpustakaan Digital Ajaib</span>
+  </div>
+  </header>
+
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="Tentang.html">Tentang</a>
+    <a href="katalog.html">Katalog</a>
+    <a href="layanan.html">Layanan</a>
+    <a href="koleksi.html">Koleksi</a>
+    <a href="faq.html">Panduan FAQ</a>
+	<a href="agenda.html">Berita & Agenda</a>
+    <a href="login.html">Login</a>
+    <button id="langToggle" class="lang-button">🌐 Bahasa</button>
+  </nav>
+
+  <div class="theme-switcher">
+    <span>🎨 Ganti Tema: </span>
+    <button onclick="setTheme('default')">Default</button>
+    <button onclick="setTheme('fairy')">Fairy</button>
+    <button onclick="setTheme('astro')">Astronomi</button>
+    <button onclick="setTheme('nature')">Alam</button>
+    <button onclick="setTheme('coquette')">Coquette</button>
+    <button onclick="setTheme('aesthetic')">Aesthetic</button>
+    <button onclick="setTheme('cherry')">Cherry</button>
+    <button onclick="setTheme('dark')">Dark</button>
+    <button onclick="setTheme('sapi')">Sapi</button>
+    <button onclick="setTheme('bunga')">Bunga</button>
+    <button onclick="setTheme('kartun')">Kartun</button>
+    <button onclick="setTheme('dinosaurus')">Dinosaurus</button>
+    <button onclick="setTheme('fisika')">Fisika</button>
+    <button onclick="setTheme('christmas')">Christmas</button>
+  </div>
+  <div class="review-popup">
+    <h3>📢 Ulasan Pengguna</h3>
+    <p>"Buku filsafatnya ringan dan mudah dipahami. Terima kasih Bibliona!"</p>
+    <p>"Anak saya suka sekali dengan koleksi dinosaurusnya!"</p>
+    <p>"Pelayanan digitalnya cepat dan mudah. Saya senang!"</p>
+  </div>
+  
+  <div class="info-corner">
+    <h3>📰 Pojok Informasi</h3>
+    <p id="infoText">Selamat datang di Bibliona!</p>
+    <a href="#" onclick="alert(document.getElementById('infoText').innerText)">Lihat Detail</a>
+  </div>
+
+  <div class="content-wrapper">
+    <section class="ranking">
+      <h2>🏆 Koleksi Terpopuler</h2>
+      <div class="card"><a href="#">1. "Ensiklopedia Dunia Ajaib"</a></div>
+      <div class="card"><a href="#">2. "Kamus Pintar 5 Bahasa"</a></div>
+      <div class="card"><a href="#">3. "Petualangan Matematika Gokil"</a></div>
+      <div class="card"><a href="#">4. "Filsafat untuk Remaja"</a></div>
+      <div class="card"><a href="#">5. "Rahasia Sejarah Dunia"</a></div>
+    </section>
+
+	<section class="exclusive">
+      <h2>✨ Fitur Unggulan⋆.˚🦋༘⋆</h2>
+      <div class="card">🤖 Rekomendasi AI
+        <a href="#" class="mini-button">Buka</a>
+      </div>
+      <div class="card">🧙 Karakter Penuntun
+        <a href="#" class="mini-button">Mulai</a>
+      </div>
+      <div class="card">📱 Mode AR Buku
+        <a href="#" class="mini-button">Lihat</a>
+      </div>
+      <div class="card">🎁 Tantangan Baca Berhadiah
+        <a href="#" class="mini-button">Ikuti</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 Perpustakaan Digital Dunia Ajaib Penuh Pengetahuan</p>
+  </footer>
+
+  <script>
+	 const infoMessages = [
+      "💻 Virtual Tour akhir bulan ini!",
+      "📚 Koleksi baru telah tersedia!",
+      "🎁 Tantangan Baca Berhadiah dimulai minggu ini!",
+      "🛠️ Fitur baru pencarian pintar kini tersedia.",
+      "🎉 Ikuti Tantangan Baca dan menangkan hadiah menarik!",
+      "📢 Perpustakaan akan offline sementara pada 20 Mei 2025 pukul 22.00 WIB."
+    ];
+
+    let currentMessageIndex = 0;
+
+    function cycleInfo() {
+      const infoText = document.getElementById("infoText");
+      if (infoText) {
+        infoText.innerText = infoMessages[currentMessageIndex];
+        currentMessageIndex = (currentMessageIndex + 1) % infoMessages.length;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      cycleInfo();
+      setInterval(cycleInfo, 5000);
+    });
+	
+    function registerUser(email, password) {
+      localStorage.setItem("user", JSON.stringify({ email, password }));
+    }
+	
+	function loginUser(email, password) {
+      const savedUser = JSON.parse(localStorage.getItem("user"));
+      if (savedUser && savedUser.email === email && savedUser.password === password) {
+        localStorage.setItem("isLoggedIn", "true");
+        return true;
+      }
+      return false;
+    }
+
+    function isUserLoggedIn() {
+      return localStorage.getItem("isLoggedIn") === "true";
+    }
+
+    function requireLogin(featureName) {
+      if (!isUserLoggedIn()) {
+        alert(`Silakan login atau daftar akun terlebih dahulu untuk mengakses fitur: ${featureName}`);
+        window.location.href = "login.html";
+      }
+    }
+
+    function checkThemeAccess(themeName) {
+      if (!isUserLoggedIn()) {
+        alert("Silakan login terlebih dahulu untuk mengganti tema.");
+        window.location.href = "login.html";
+        return;
+      }
+      document.body.className = "theme-" + themeName;
+    }
+
+    document.getElementById("langToggle").addEventListener("click", function () {
+      alert("Fitur ubah bahasa segera hadir! 🌐");
+    });
+	
+	// contoh di file login.html
+	const success = loginUser(emailInput.value, passwordInput.value);
+	if (success) {
+	  alert("Berhasil login!");
+	  window.location.href = "beranda.html";
+	} else {
+	  alert("Email atau password salah.");
+	}
+
+    function setTheme(themeName) {
+      document.body.className = "theme-" + themeName;
+    }
+
+    function startVoiceSearch() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'id-ID';
+      recognition.start();
+      recognition.onresult = function(event) {
+        document.getElementById('searchInput').value = event.results[0][0].transcript;
+      };
+    }
+
+    document.getElementById("langToggle").addEventListener("click", function () {
+      alert("Fitur ubah bahasa segera hadir! 🌐");
+    });
+
+    function searchBooks() {
+      const keyword = document.getElementById('searchInput').value.toLowerCase();
+      const filter = document.getElementById('filter').value;
+      alert(`Pencarian untuk: "${keyword}" dengan filter: "${filter}"`);
+    }
+  </script>
+</body>
+</html>
